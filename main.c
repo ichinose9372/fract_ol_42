@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:17:28 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/12 17:50:14 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/13 16:48:56 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(void)
 	start_mendelbro(&fra);
 	fractol(&fra);
 	mlx_mouse_hook(fra.win_ptr, &mouse_hook, &fra);
+	mlx_key_hook(fra.win_ptr, &key_hook, &fra);
 	mlx_hook(fra.win_ptr, 33, 1L << 17, close, &fra);
 	mlx_hook(fra.win_ptr, 2, 1L << 0, close, &fra);
 	mlx_loop(fra.mlx_ptr);

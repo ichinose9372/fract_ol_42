@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:18:47 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/12 17:55:56 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:01:15 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ typedef struct s_fractol {
 	int		maxiter;
 	double	zoom;
 	double	left;
+	int		color;
+	double	l_move;
+	double	v_move;
 	t_data	img;
 }	t_fractol;
 
@@ -54,7 +57,7 @@ int		mouse_hook(int button, int x, int y, t_fractol *fra);
 void	start_mendelbro(t_fractol *fra);
 int		mandelbro(t_fractol *fra);
 void	fractol(t_fractol *fra);
-
-
+void	color(t_fractol *fra, int num);
+void	color2(t_fractol *fra, int num);
 
 #endif

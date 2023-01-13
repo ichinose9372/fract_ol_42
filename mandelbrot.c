@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:54:27 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/13 13:12:21 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:07:22 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ void	start_mendelbro(t_fractol *fra)
 	fra->x_fin = 2.0;
 	fra->y_str = -2.0;
 	fra->y_fin = 2.0;
-	fra->maxiter = 80;
+	fra->maxiter = 100;
 	fra->color = 0;
 	fra->zoom = 0;
 	fra->left = 1.0;
+	fra->l_move = 1.0;
+	fra->v_move = 0;
 }
 
-int mandelbro(t_fractol	*fra)
+int	mandelbro(t_fractol	*fra)
 {
 	double	c_re;
 	double	c_im;
@@ -34,8 +36,10 @@ int mandelbro(t_fractol	*fra)
 
 	c_re = 0;
 	c_im = 0;
-	fra->dx = (fra->loopx - WIN_WIDTH / fra->x_fin) / (WIN_WIDTH / fra->x_fin - fra-> x_str + fra->zoom) - 1.0;
-	fra->dy = (fra->loopy - WIN_HEIGHT / fra->y_fin) / (WIN_HEIGHT / fra->y_fin - fra-> y_str + fra->zoom);
+	fra->dx = (fra->loopx - WIN_WIDTH / fra->x_fin)
+		/ (WIN_WIDTH / fra->x_fin - fra-> x_str + fra->zoom) - fra-> l_move;
+	fra->dy = (fra->loopy - WIN_HEIGHT / fra->y_fin)
+		/ (WIN_HEIGHT / fra->y_fin - fra-> y_str + fra->zoom) + fra->v_move;
 	count = 0;
 	while (count < fra->maxiter)
 	{
@@ -62,9 +66,9 @@ void	fractol(t_fractol *fra)
 		{
 			num = mandelbro(fra);
 			if (num == 0)
-				my_mlx_pixel_put(fra, fra->loopx, fra->loopy, 0xFFFFFFF); // 中の色
+				my_mlx_pixel_put(fra, fra->loopx, fra->loopy, 0x000000);
 			else
-				my_mlx_pixel_put(fra, fra->loopx, fra->loopy, 0x00005BC9); //外の色
+				color(fra, num);
 			fra->loopx++;
 		}
 		fra->loopy++;
