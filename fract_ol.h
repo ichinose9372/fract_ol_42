@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:18:47 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/13 17:01:15 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:49:30 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx.h"
 # include <stdio.h>
 # include <math.h>
+# include <stdlib.h>
 
 typedef struct s_data {
 	void	*img;
@@ -39,7 +40,6 @@ typedef struct s_fractol {
 	int		maxiter;
 	double	zoom;
 	double	left;
-	int		color;
 	double	l_move;
 	double	v_move;
 	t_data	img;
@@ -51,7 +51,7 @@ typedef struct s_fractol {
 # define WIN_HEIGHT 640
 
 void	my_mlx_pixel_put(t_fractol *fra, int width, int heigh, int color);
-int		close(int keycode, t_fractol *fra);
+int		close_esc(int keycode, t_fractol *fra);
 int		key_hook(int keycode, t_fractol *fra);
 int		mouse_hook(int button, int x, int y, t_fractol *fra);
 void	start_mendelbro(t_fractol *fra);
@@ -59,5 +59,10 @@ int		mandelbro(t_fractol *fra);
 void	fractol(t_fractol *fra);
 void	color(t_fractol *fra, int num);
 void	color2(t_fractol *fra, int num);
+int		close_button(t_fractol *fra);
+int		ft_strcmp(const char *s1, const char *s2);
+void	hsv(t_fractol *fra, int num);
+
+
 
 #endif

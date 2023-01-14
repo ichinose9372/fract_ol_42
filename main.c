@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:17:28 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/13 16:48:56 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:03:21 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,29 @@ void	start(t_fractol *fra)
 			&fra->img.endian);
 }
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	t_fractol	fra;
 
-	start(&fra);
-	start_mendelbro(&fra);
-	fractol(&fra);
-	mlx_mouse_hook(fra.win_ptr, &mouse_hook, &fra);
-	mlx_key_hook(fra.win_ptr, &key_hook, &fra);
-	mlx_hook(fra.win_ptr, 33, 1L << 17, close, &fra);
-	mlx_hook(fra.win_ptr, 2, 1L << 0, close, &fra);
-	mlx_loop(fra.mlx_ptr);
-	return (0);
+	if (argc < 2)
+		return (0);
+	else if (argc > 3)
+		return (0);
+	else
+	{
+		start(&fra);
+		if (!ft_strcmp("mandelbro", argv[1]))
+		{
+			start_mendelbro(&fra);
+			fractol(&fra);
+		}
+		else
+			return (0);
+		mlx_mouse_hook(fra.win_ptr, &mouse_hook, &fra);
+		mlx_key_hook(fra.win_ptr, &key_hook, &fra);
+		mlx_hook(fra.win_ptr, 17, 1L << 3, close_button, &fra);
+		mlx_hook(fra.win_ptr, 2, 1L << 0, close_esc, &fra);
+		mlx_loop(fra.mlx_ptr);
+		return (0);
+	}
 }

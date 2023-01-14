@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:13:39 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/13 16:42:55 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:54:21 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,22 @@ void	color2(t_fractol *fra, int num)
 		my_mlx_pixel_put(fra, fra->loopx, fra->loopy, 0x00ffa590);
 	else
 		my_mlx_pixel_put(fra, fra->loopx, fra->loopy, 0x00ffc9bb);
+}
+
+void	hsv(t_fractol *fra, int num)
+{
+	int	hue;
+	int	s;
+	int	v;
+
+	s = 255;
+	if (num < fra->maxiter)
+		v = 1;
+	else
+		v = 255;
+	hue = 255 * num / fra->maxiter;
+	if (num <= fra->maxiter)
+		my_mlx_pixel_put(fra, fra->loopx, fra->loopy, s * v * hue);
+	else
+		my_mlx_pixel_put(fra, fra->loopx, fra->loopy, s * v * hue + 10);
 }

@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:27:56 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/13 17:14:43 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/14 13:29:11 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,52 +21,28 @@ void	my_mlx_pixel_put(t_fractol *fra, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	close(int keycode, t_fractol *fra)
-{
-	if (keycode == ESC)
-		mlx_destroy_window(fra->mlx_ptr, fra->win_ptr);
-	return (0);
-}
+// size_t	ft_strlen(const char *str)
+// {
+// 	size_t	count;
 
-int	key_hook(int keycode, t_fractol *fra)
-{
-	mlx_clear_window(fra->mlx_ptr, fra->win_ptr);
-	if (keycode == 123)
-	{
-		fra->l_move += 0.16;
-		fractol(fra);
-	}
-	else if (keycode == 124)
-	{
-		fra->l_move -= 0.16;
-		fractol(fra);
-	}
-	else if (keycode == 125)
-	{
-		fra->v_move += 0.16;
-		fractol(fra);
-	}
-	else if (keycode == 126)
-	{
-		fra->v_move -= 0.16;
-		fractol(fra);
-	}
-	return (0);
-}
+// 	count = 0;
+// 	while (*str != '\0')
+// 	{
+// 		str++;
+// 		count++;
+// 	}
+// 	return (count);
+// }
 
-int	mouse_hook(int button, int x, int y, t_fractol *fra)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	if (button == 5)
+	while (1)
 	{
-		mlx_clear_window(fra->mlx_ptr, fra->win_ptr);
-		fra->zoom += 10.0;
-		fractol(fra);
+		if (*s1 == '\0' || *s2 == '\0')
+			return ((unsigned char)*s1 - (unsigned char)*s2);
+		if (*s1 != *s2)
+			return ((unsigned char)*s1 - (unsigned char)*s2);
+		s1++;
+		s2++;
 	}
-	if (button == 4)
-	{
-		mlx_clear_window(fra->mlx_ptr, fra->win_ptr);
-		fra->zoom -= 10.0;
-		fractol(fra);
-	}
-	return (0);
 }
