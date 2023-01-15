@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:54:27 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/14 17:21:35 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:18:51 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	start_mendelbro(t_fractol *fra)
 	fra->y_str = -2.0;
 	fra->y_fin = 2.0;
 	fra->maxiter = 100;
-	fra->zoom = 1;
+	fra->zoom = 1.0;
 	fra->left = 1.0;
 	fra->l_move = 1.0;
 	fra->v_move = 0;
@@ -46,7 +46,7 @@ int	mandelbro(t_fractol	*fra)
 		tmp_im = 2 * c_re * c_im + fra->dy;
 		c_re = tmp_re;
 		c_im = tmp_im;
-		if (c_re * c_re + c_im * c_im >= 4)
+		if (c_re * c_re + c_im * c_im >= 8)
 			return (count);
 		count++;
 	}
@@ -55,7 +55,7 @@ int	mandelbro(t_fractol	*fra)
 
 void	fractol(t_fractol *fra)
 {
-	int	num;
+	int		num;
 
 	fra->loopy = 0;
 	while (fra->loopy < WIN_WIDTH)
@@ -67,7 +67,7 @@ void	fractol(t_fractol *fra)
 			if (num == 0)
 				my_mlx_pixel_put(fra, fra->loopx, fra->loopy, 0x000000);
 			else
-				hsv(fra, num);
+				color(fra, num);
 			fra->loopx++;
 		}
 		fra->loopy++;

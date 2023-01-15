@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:17:28 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/14 15:03:21 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:55:33 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ void	start(t_fractol *fra)
 			&fra->img.endian);
 }
 
-int	main(int argc, char *argv[])
+int	check_input(int argc, char **argv, t_fractol *fra)
 {
-	t_fractol	fra;
-
 	if (argc < 2)
 		return (0);
 	else if (argc > 3)
@@ -40,11 +38,19 @@ int	main(int argc, char *argv[])
 		}
 		else
 			return (0);
-		mlx_mouse_hook(fra.win_ptr, &mouse_hook, &fra);
-		mlx_key_hook(fra.win_ptr, &key_hook, &fra);
-		mlx_hook(fra.win_ptr, 17, 1L << 3, close_button, &fra);
-		mlx_hook(fra.win_ptr, 2, 1L << 0, close_esc, &fra);
-		mlx_loop(fra.mlx_ptr);
-		return (0);
 	}
+}
+
+int	main(int argc, char *argv[])
+{
+	t_fractol	fra;
+	int			x;
+
+	x = check_input(argc, &argv, &fra);
+	mlx_mouse_hook(fra.win_ptr, &mouse_hook, &fra);
+	mlx_key_hook(fra.win_ptr, &key_hook, &fra);
+	mlx_hook(fra.win_ptr, 17, 1L << 3, close_button, &fra);
+	mlx_hook(fra.win_ptr, 2, 1L << 0, close_esc, &fra);
+	mlx_loop(fra.mlx_ptr);
+	return (0);
 }
