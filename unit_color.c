@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:13:39 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/16 14:50:26 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:53:35 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,5 @@ void	rainbow(t_fractol *fra, int num)
 
 void	black(t_fractol *fra, int num)
 {
-	my_mlx_pixel_put(fra, fra->loopx, fra->loopy, num % 100 * pow(2, 12) + 0x00000000);
+	my_mlx_pixel_put(fra, fra->loopx, fra->loopy, num * num * num);
 }

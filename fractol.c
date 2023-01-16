@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol_utils.c                                   :+:      :+:    :+:   */
+/*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/08 17:27:56 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/16 17:28:33 by yichinos         ###   ########.fr       */
+/*   Created: 2023/01/16 17:23:28 by yichinos          #+#    #+#             */
+/*   Updated: 2023/01/16 17:27:40 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
 
-void	my_mlx_pixel_put(t_fractol *fra, int x, int y, int color)
+void	fractol(t_fractol *fra)
 {
-	char	*dst;
+	int		num;
 
-	dst = fra->img.addr + (y * fra->img.line_length + x
-			* (fra->img.bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	while (1)
+	fra->loopy = 0;
+	while (fra->loopy < WIN_WIDTH)
 	{
-		if (*s1 == '\0' || *s2 == '\0')
-			return ((unsigned char)*s1 - (unsigned char)*s2);
-		if (*s1 != *s2)
-			return ((unsigned char)*s1 - (unsigned char)*s2);
-		s1++;
-		s2++;
+		fra->loopx = 0;
+		while (fra->loopx < WIN_HEIGHT)
+		{
+			num = mandelbro(fra);
+			if (num == 0)
+				my_mlx_pixel_put(fra, fra->loopx, fra->loopy, 0x000000);
+			else
+				black(fra, num);
+			fra->loopx++;
+		}
+		fra->loopy++;
 	}
+	mlx_put_image_to_window(fra->mlx_ptr, fra->win_ptr, fra->img.img, 0, 0);
 }
