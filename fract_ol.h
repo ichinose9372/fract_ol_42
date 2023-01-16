@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:18:47 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/14 16:49:30 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/16 14:49:10 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	color(t_fractol *fra, int num);
 void	color2(t_fractol *fra, int num);
 int		close_button(t_fractol *fra);
 int		ft_strcmp(const char *s1, const char *s2);
-void	hsv(t_fractol *fra, int num);
+void	rainbow(t_fractol *fra, int num);
+void	black(t_fractol *fra, int num);
 
 
 

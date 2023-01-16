@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:17:28 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/15 19:55:33 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/16 11:51:49 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@ int	check_input(int argc, char **argv, t_fractol *fra)
 		return (0);
 	else
 	{
-		start(&fra);
+		start(fra);
 		if (!ft_strcmp("mandelbro", argv[1]))
 		{
-			start_mendelbro(&fra);
-			fractol(&fra);
+			start_mendelbro(fra);
+			fractol(fra);
 		}
 		else
 			return (0);
 	}
+	return (0);
 }
 
 int	main(int argc, char *argv[])
 {
 	t_fractol	fra;
-	int			x;
 
-	x = check_input(argc, &argv, &fra);
+	check_input(argc, argv, &fra);
 	mlx_mouse_hook(fra.win_ptr, &mouse_hook, &fra);
 	mlx_key_hook(fra.win_ptr, &key_hook, &fra);
 	mlx_hook(fra.win_ptr, 17, 1L << 3, close_button, &fra);

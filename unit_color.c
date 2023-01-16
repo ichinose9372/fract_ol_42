@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:13:39 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/15 14:54:49 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/16 14:50:26 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,25 @@ void	color2(t_fractol *fra, int num)
 		my_mlx_pixel_put(fra, fra->loopx, fra->loopy, 0x00ffc9bb);
 }
 
-void hsv(t_fractol *fra, int num)
+void	rainbow(t_fractol *fra, int num)
 {
-	my_mlx_pixel_put(fra, fra->loopx, fra->loopy, num * fra->loopx * fra->loopy);
+	if (num % 7 == 0)
+		my_mlx_pixel_put (fra, fra->loopx, fra->loopy, 0x00000000);
+	else if (num % 7 == 1)
+		my_mlx_pixel_put (fra, fra->loopx, fra->loopy, 0x00FFa500);
+	else if (num % 7 == 2)
+		my_mlx_pixel_put (fra, fra->loopx, fra->loopy, 0x00FFFF00);
+	else if (num % 7 == 3)
+		my_mlx_pixel_put (fra, fra->loopx, fra->loopy, 0x00008000);
+	else if (num % 7 == 4)
+		my_mlx_pixel_put (fra, fra->loopx, fra->loopy, 0x0000FFFF);
+	else if (num % 7 == 5)
+		my_mlx_pixel_put (fra, fra->loopx, fra->loopy, 0x000000FF);
+	else
+		my_mlx_pixel_put (fra, fra->loopx, fra->loopy, 0x00800080);
+}
+
+void	black(t_fractol *fra, int num)
+{
+	my_mlx_pixel_put(fra, fra->loopx, fra->loopy, num % 100 * pow(2, 12) + 0x00000000);
 }
