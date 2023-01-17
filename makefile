@@ -11,7 +11,8 @@ SRCS	=	main.c\
 			mandelbrot.c\
 			unit_color.c\
 			key_hook.c\
-			fractol.c
+			fractol.c\
+			julia.c
 
 OBJS	=	$(SRCS:.c=.o)
 

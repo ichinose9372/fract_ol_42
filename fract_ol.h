@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:18:47 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/16 17:02:33 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:39:52 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 # define FRACT_OL_H
 
 # include "mlx.h"
-# include <stdio.h>
+# include <unistd.h>
 # include <math.h>
 # include <stdlib.h>
+# include <stdio.h>
+
 
 typedef struct s_data {
 	void	*img;
@@ -39,9 +41,9 @@ typedef struct s_fractol {
 	int		loopy;
 	int		maxiter;
 	double	zoom;
-	double	left;
 	double	l_move;
 	double	v_move;
+	int		type;
 	t_data	img;
 }	t_fractol;
 
@@ -63,6 +65,12 @@ int		close_button(t_fractol *fra);
 int		ft_strcmp(const char *s1, const char *s2);
 void	rainbow(t_fractol *fra, int num);
 void	black(t_fractol *fra, int num);
+int		ft_strlen(char	*str);
+int		julia(t_fractol	*fra);
+void	start_julia(t_fractol *fra);
+
+
+
 
 
 

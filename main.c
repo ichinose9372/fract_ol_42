@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:17:28 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/16 17:29:13 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/17 12:51:30 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,29 @@ void	start(t_fractol *fra)
 int	check_input(int argc, char **argv, t_fractol *fra)
 {
 	if (argc < 2)
-		return (0);
+	{
+		write(1, "ERROR!\n", ft_strlen("ERROR!\n"));
+		write(1, "Please select--", ft_strlen("Please select--"));
+		write(1, "----mandelbrot\n", ft_strlen("----mandelbrot\n"));
+		write(1, "              |----julia\n", ft_strlen("              |----julia\n"));
+		exit(1);
+	}
 	else if (argc > 3)
 		return (0);
 	else
 	{
-		if (!ft_strcmp("mandelbro", argv[1]))
+		if (!ft_strcmp("mandelbrot", argv[1]))
 		{
+			fra->type = 1;
 			start_mendelbro(fra);
 			fractol(fra);
 		}
 		else if (!ft_strcmp("julia", argv[1]))
-			start_mendelbro(fra);
+		{
+			fra->type = 2;
+			start_julia(fra);
+			fractol(fra);
+		}
 		else
 			return (0);
 	}
