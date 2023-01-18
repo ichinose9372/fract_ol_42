@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:17:28 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/17 12:51:30 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:27:36 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,26 @@ int	check_input(int argc, char **argv, t_fractol *fra)
 		write(1, "ERROR!\n", ft_strlen("ERROR!\n"));
 		write(1, "Please select--", ft_strlen("Please select--"));
 		write(1, "----mandelbrot\n", ft_strlen("----mandelbrot\n"));
-		write(1, "              |----julia\n", ft_strlen("              |----julia\n"));
+		write(1, "              |----julia\n",
+			ft_strlen("              |----julia\n"));
 		exit(1);
 	}
 	else if (argc > 3)
-		return (0);
+		exit(1);
 	else
 	{
 		if (!ft_strcmp("mandelbrot", argv[1]))
-		{
 			fra->type = 1;
-			start_mendelbro(fra);
-			fractol(fra);
-		}
-		else if (!ft_strcmp("julia", argv[1]))
+		else if ((!ft_strcmp("julia", argv[1])) && argc == 3)
 		{
 			fra->type = 2;
-			start_julia(fra);
-			fractol(fra);
+			julia_set(fra, argv[2]);
 		}
 		else
-			return (0);
+		{
+			write(1, "missing type!\n", ft_strlen("missing type!\n"));
+			exit(1);
+		}
 	}
 	return (0);
 }
@@ -66,6 +65,8 @@ int	main(int argc, char *argv[])
 
 	start(&fra);
 	check_input(argc, argv, &fra);
+	set_fractol(&fra);
+	fractol(&fra);
 	mlx_mouse_hook(fra.win_ptr, &mouse_hook, &fra);
 	mlx_key_hook(fra.win_ptr, &key_hook, &fra);
 	mlx_hook(fra.win_ptr, 17, 1L << 3, close_button, &fra);

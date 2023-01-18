@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:18:47 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/17 11:39:52 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:39:30 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
-
 
 typedef struct s_data {
 	void	*img;
@@ -59,8 +58,6 @@ int		mouse_hook(int button, int x, int y, t_fractol *fra);
 void	start_mendelbro(t_fractol *fra);
 int		mandelbro(t_fractol *fra);
 void	fractol(t_fractol *fra);
-void	color(t_fractol *fra, int num);
-void	color2(t_fractol *fra, int num);
 int		close_button(t_fractol *fra);
 int		ft_strcmp(const char *s1, const char *s2);
 void	rainbow(t_fractol *fra, int num);
@@ -68,10 +65,8 @@ void	black(t_fractol *fra, int num);
 int		ft_strlen(char	*str);
 int		julia(t_fractol	*fra);
 void	start_julia(t_fractol *fra);
-
-
-
-
+void	set_fractol(t_fractol *fra);
+void	julia_set(t_fractol *fra, char *argv);
 
 
 #endif
