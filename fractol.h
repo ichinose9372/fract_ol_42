@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol.h                                         :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:18:47 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/18 16:39:30 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:15:56 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL_H
-# define FRACT_OL_H
+#ifndef FRACTOL_H
+# define FRACTOL_H
 
 # include "mlx.h"
 # include <unistd.h>
-# include <math.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 typedef struct s_data {
 	void	*img;
@@ -40,16 +38,22 @@ typedef struct s_fractol {
 	int		loopy;
 	int		maxiter;
 	double	zoom;
+	int		color;
 	double	l_move;
 	double	v_move;
 	int		type;
 	t_data	img;
 }	t_fractol;
 
-# define ZOOM_IN 4
-# define ESC 53
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 640
+# define LEFT 123
+# define RIGHT 124
+# define UP 126
+# define DOWN 125
+# define ESC 53
+# define ZOOM_OUT 5
+# define ZOOM_IN 4
 
 void	my_mlx_pixel_put(t_fractol *fra, int width, int heigh, int color);
 int		close_esc(int keycode, t_fractol *fra);
@@ -57,16 +61,19 @@ int		key_hook(int keycode, t_fractol *fra);
 int		mouse_hook(int button, int x, int y, t_fractol *fra);
 void	start_mendelbro(t_fractol *fra);
 int		mandelbro(t_fractol *fra);
-void	fractol(t_fractol *fra);
+void	draw_fractol(t_fractol *fra);
 int		close_button(t_fractol *fra);
 int		ft_strcmp(const char *s1, const char *s2);
-void	rainbow(t_fractol *fra, int num);
-void	black(t_fractol *fra, int num);
+void	pixel_put_color(t_fractol *fra, int num);
 int		ft_strlen(char	*str);
 int		julia(t_fractol	*fra);
 void	start_julia(t_fractol *fra);
 void	set_fractol(t_fractol *fra);
-void	julia_set(t_fractol *fra, char *argv);
-
+void	init_fractol(t_fractol *fra);
+void	ft_error(void);
+void	check_input(int argc, char **argv, t_fractol *fra);
+double	ft_get_num(const char *str, double *decimal);
+double	ft_atof(const char *str);
+int		ft_isspace(char c);
 
 #endif

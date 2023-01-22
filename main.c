@@ -6,67 +6,62 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:17:28 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/18 16:27:36 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:55:45 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fract_ol.h"
+#include "fractol.h"
+#include <stdio.h>
 
-void	start(t_fractol *fra)
+void	init_fractol(t_fractol *fra)
 {
 	fra->mlx_ptr = mlx_init();
 	if (fra->mlx_ptr == NULL)
-		exit(1);
+		exit(EXIT_FAILURE);
 	fra->win_ptr = mlx_new_window(fra->mlx_ptr, 640, 640, "fracto_ol");
 	if (fra->win_ptr == NULL)
-		exit(1);
+		exit(EXIT_FAILURE);
 	fra->img.img = mlx_new_image(fra->mlx_ptr, 640, 640);
 	if (fra->img.img == NULL)
-		exit(1);
+		exit(EXIT_FAILURE);
 	fra->img.addr = mlx_get_data_addr(fra->img.img,
 			&fra->img.bits_per_pixel, &fra->img.line_length,
 			&fra->img.endian);
 }
 
-int	check_input(int argc, char **argv, t_fractol *fra)
+void	check_input(int argc, char **argv, t_fractol *fra)
 {
-	if (argc < 2)
+	if (argc < 2 || argc > 4)
+		ft_error();
+	if (!ft_strcmp("mandelbrot", argv[1]))
+		fra->type = 0;
+	else if (!ft_strcmp("julia", argv[1]) && argv[2] && argv[3])
 	{
-		write(1, "ERROR!\n", ft_strlen("ERROR!\n"));
-		write(1, "Please select--", ft_strlen("Please select--"));
-		write(1, "----mandelbrot\n", ft_strlen("----mandelbrot\n"));
-		write(1, "              |----julia\n",
-			ft_strlen("              |----julia\n"));
-		exit(1);
+		fra->type = 1;
+		fra->dx = ft_atof(argv[2]);
+		fra->dy = ft_atof(argv[3]);
 	}
-	else if (argc > 3)
-		exit(1);
 	else
-	{
-		if (!ft_strcmp("mandelbrot", argv[1]))
-			fra->type = 1;
-		else if ((!ft_strcmp("julia", argv[1])) && argc == 3)
-		{
-			fra->type = 2;
-			julia_set(fra, argv[2]);
-		}
-		else
-		{
-			write(1, "missing type!\n", ft_strlen("missing type!\n"));
-			exit(1);
-		}
-	}
-	return (0);
+		ft_error();
 }
 
-int	main(int argc, char *argv[])
+void	ft_error(void)
+{
+	write(1, "Usage: ./fractol <Fractals>\n", 28);
+	write(1, "Available <Fractals>:\n", 23);
+	write(1, "---> mandelbrot\n", 17);
+	write(1, "---> julia [num] [num]\n", 24);
+	exit(EXIT_FAILURE);
+}
+
+int	main(int argc, char **argv)
 {
 	t_fractol	fra;
 
-	start(&fra);
+	init_fractol(&fra);
 	check_input(argc, argv, &fra);
 	set_fractol(&fra);
-	fractol(&fra);
+	draw_fractol(&fra);
 	mlx_mouse_hook(fra.win_ptr, &mouse_hook, &fra);
 	mlx_key_hook(fra.win_ptr, &key_hook, &fra);
 	mlx_hook(fra.win_ptr, 17, 1L << 3, close_button, &fra);
@@ -74,3 +69,8 @@ int	main(int argc, char *argv[])
 	mlx_loop(fra.mlx_ptr);
 	return (0);
 }
+
+// __attribute__((destructor)) static void destructor()
+// {
+//     system("leaks -q fractol");
+// }

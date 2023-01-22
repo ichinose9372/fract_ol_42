@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol_utils.c                                   :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/08 17:27:56 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/18 15:10:06 by yichinos         ###   ########.fr       */
+/*   Created: 2023/01/13 13:13:39 by yichinos          #+#    #+#             */
+/*   Updated: 2023/01/22 18:52:24 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fract_ol.h"
+#include "fractol.h"
 
 void	my_mlx_pixel_put(t_fractol *fra, int x, int y, int color)
 {
@@ -21,27 +21,28 @@ void	my_mlx_pixel_put(t_fractol *fra, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	ft_strcmp(const char *s1, const char *s2)
+void	pixel_put_color(t_fractol *fra, int num)
 {
-	while (*s1 || *s2)
-	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
-	}
-	return (0);
-}
+	int	color;
 
-int	ft_strlen(char	*str)
-{
-	int	count;
-
-	count = 0;
-	while (*str)
-	{
-		count++;
-		str++;
-	}
-	return (count);
+	color = 0;
+	if (num == fra->maxiter)
+		color = 0x00000000;
+	else if (num % 8 == 7)
+		color = 0x888888;
+	else if (num % 8 == 6)
+		color = 0x777777;
+	else if (num % 8 == 5)
+		color = 0x666666;
+	else if (num % 8 == 4)
+		color = 0x555555;
+	else if (num % 8 == 3)
+		color = 0x444444;
+	else if (num % 8 == 2)
+		color = 0x333333;
+	else if (num % 8 == 1)
+		color = 0x222222;
+	else
+		color = 0x111111;
+	my_mlx_pixel_put(fra, fra->loopx, fra->loopy, color);
 }

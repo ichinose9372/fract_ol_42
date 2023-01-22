@@ -7,9 +7,9 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 SRCS	=	main.c\
 			mouse_hook.c\
-			fract_ol_utils.c\
+			fractol_utils.c\
 			mandelbrot.c\
-			unit_color.c\
+			color.c\
 			key_hook.c\
 			fractol.c\
 			julia.c\
@@ -19,10 +19,11 @@ OBJS	=	$(SRCS:.c=.o)
 
 RM		=	rm -f
 
-all : $(NAME)
+all : mlx $(NAME)
 
 $(NAME)	: $(SRCS)
-		$(CC) $(CFLAGS) $(SRCS)  -L/usr/X11R6/lib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+		$(CC) $(CFLAGS) $(SRCS) -L/usr/X11R6/lib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
 clean:
 	$(RM) $(OBJS)
 
@@ -31,4 +32,4 @@ fclean:	clean
 
 re:		fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all clean fclean re mlx

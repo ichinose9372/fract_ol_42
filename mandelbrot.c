@@ -6,11 +6,11 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:54:27 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/18 16:10:59 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:04:30 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fract_ol.h"
+#include "fractol.h"
 
 int	mandelbro(t_fractol	*fra)
 {
@@ -23,9 +23,9 @@ int	mandelbro(t_fractol	*fra)
 	c_re = 0;
 	c_im = 0;
 	fra->dx = (fra->loopx - WIN_WIDTH / fra->x_fin)
-		/ (WIN_WIDTH / fra->x_fin - fra-> x_str + fra->zoom) - fra->l_move;
+		/ (WIN_WIDTH * fra->zoom) - fra->l_move;
 	fra->dy = (fra->loopy - WIN_HEIGHT / fra->y_fin)
-		/ (WIN_HEIGHT / fra->y_fin - fra-> y_str + fra->zoom) - fra->v_move;
+		/ (WIN_HEIGHT * fra->zoom) - fra->v_move;
 	count = 0;
 	while (count < fra->maxiter)
 	{
@@ -37,5 +37,5 @@ int	mandelbro(t_fractol	*fra)
 			return (count);
 		count++;
 	}
-	return (0);
+	return (count);
 }
