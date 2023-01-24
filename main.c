@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yichinos <yichinos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:17:28 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/24 12:17:33 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:52:17 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,17 @@ void	init_fractol(t_fractol *fra)
 		exit(EXIT_FAILURE);
 	fra->win_ptr = mlx_new_window(fra->mlx_ptr, 640, 640, "fracto_ol");
 	if (fra->win_ptr == NULL)
+	{
+		free(fra->mlx_ptr);
 		exit(EXIT_FAILURE);
+	}
 	fra->img.img = mlx_new_image(fra->mlx_ptr, 640, 640);
 	if (fra->img.img == NULL)
+	{
+		mlx_destroy_window(fra->mlx_ptr, fra->win_ptr);
+		free(fra->mlx_ptr);
 		exit(EXIT_FAILURE);
+	}
 	fra->img.addr = mlx_get_data_addr(fra->img.img,
 			&fra->img.bits_per_pixel, &fra->img.line_length,
 			&fra->img.endian);

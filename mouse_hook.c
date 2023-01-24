@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yichinos <yichinos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:05:50 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/22 16:57:26 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:51:56 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	mouse_hook(int button, int x, int y, t_fractol *fra)
 
 int	close_button(t_fractol *fra)
 {
+	mlx_destroy_image(fra->mlx_ptr, fra->img.img);
 	mlx_destroy_window(fra->mlx_ptr, fra->win_ptr);
 	free(fra->mlx_ptr);
 	exit(EXIT_SUCCESS);

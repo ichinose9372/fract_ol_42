@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yichinos <yichinos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:21:00 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/22 12:22:00 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:50:53 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	close_esc(int keycode, t_fractol *fra)
 {
 	if (keycode == ESC)
 	{
+		mlx_destroy_image(fra->mlx_ptr, fra->img.img);
 		mlx_destroy_window(fra->mlx_ptr, fra->win_ptr);
 		free(fra->mlx_ptr);
 		exit(EXIT_SUCCESS);
