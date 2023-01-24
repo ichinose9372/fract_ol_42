@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:17:28 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/22 18:55:45 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:17:33 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	ft_error(void)
 	write(1, "Available <Fractals>:\n", 23);
 	write(1, "---> mandelbrot\n", 17);
 	write(1, "---> julia [num] [num]\n", 24);
+	write(1, "num > - 2.0 and num < 2.0\n", 26);
 	exit(EXIT_FAILURE);
 }
 

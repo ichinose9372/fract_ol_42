@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:27:56 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/22 18:56:42 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:16:49 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,7 @@ double	ft_atof(const char *str)
 	if (!(ft_isdigit(*str)))
 		ft_error();
 	result = ft_get_num(str, &dot);
-	if (result / dot * sign > 2.0)
-		return (result = 2.0);
-	else if (result / dot * sign < -2.0)
-		return (result = -2.0);
+	if (result / dot * sign > 2.0 || result / dot * sign < -2.0)
+		ft_error();
 	return (result / dot * sign);
 }
