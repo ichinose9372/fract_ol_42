@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yichinos <yichinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yichinos <yichinos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:18:47 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/22 18:15:56 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/27 12:06:02 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_fractol {
 	int		loopy;
 	int		maxiter;
 	double	zoom;
-	int		color;
 	double	l_move;
 	double	v_move;
 	int		type;

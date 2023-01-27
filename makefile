@@ -19,7 +19,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 RM		=	rm -f
 
-all : mlx $(NAME)
+all : $(NAME)
 
 $(NAME)	: $(SRCS)
 		$(CC) $(CFLAGS) $(SRCS) -L/usr/X11R6/lib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
@@ -32,4 +32,4 @@ fclean:	clean
 
 re:		fclean all
 
-.PHONY:	all clean fclean re mlx
+.PHONY:	all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:17:28 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/24 16:52:17 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:50:19 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_fractol(t_fractol *fra)
 	fra->mlx_ptr = mlx_init();
 	if (fra->mlx_ptr == NULL)
 		exit(EXIT_FAILURE);
-	fra->win_ptr = mlx_new_window(fra->mlx_ptr, 640, 640, "fracto_ol");
+	fra->win_ptr = mlx_new_window(fra->mlx_ptr, 640, 640, "fract_ol");
 	if (fra->win_ptr == NULL)
 	{
 		free(fra->mlx_ptr);
@@ -40,7 +40,7 @@ void	check_input(int argc, char **argv, t_fractol *fra)
 {
 	if (argc < 2 || argc > 4)
 		ft_error();
-	if (!ft_strcmp("mandelbrot", argv[1]))
+	if (!ft_strcmp("mandelbrot", argv[1]) && !argv[2])
 		fra->type = 0;
 	else if (!ft_strcmp("julia", argv[1]) && argv[2] && argv[3])
 	{
@@ -78,7 +78,7 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-// __attribute__((destructor)) static void destructor()
-// {
-//     system("leaks -q fractol");
-// }
+__attribute__((destructor)) static void destructor()
+{
+    system("leaks -q fractol");
+}
