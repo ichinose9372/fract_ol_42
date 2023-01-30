@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:17:28 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/26 16:50:19 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:56:43 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,6 @@ void	check_input(int argc, char **argv, t_fractol *fra)
 		ft_error();
 }
 
-void	ft_error(void)
-{
-	write(1, "Usage: ./fractol <Fractals>\n", 28);
-	write(1, "Available <Fractals>:\n", 23);
-	write(1, "---> mandelbrot\n", 17);
-	write(1, "---> julia [num] [num]\n", 24);
-	write(1, "num > - 2.0 and num < 2.0\n", 26);
-	exit(EXIT_FAILURE);
-}
-
 int	main(int argc, char **argv)
 {
 	t_fractol	fra;
@@ -78,7 +68,7 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-__attribute__((destructor)) static void destructor()
-{
-    system("leaks -q fractol");
-}
+// __attribute__((destructor)) static void destructor()
+// {
+//     system("leaks -q fractol");
+// }

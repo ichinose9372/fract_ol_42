@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:21:00 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/26 16:53:43 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/29 14:07:41 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 int	close_esc(int keycode, t_fractol *fra)
 {
 	if (keycode == ESC)
-	{
-		mlx_destroy_image(fra->mlx_ptr, fra->img.img);
-		mlx_destroy_window(fra->mlx_ptr, fra->win_ptr);
-		exit(EXIT_SUCCESS);
-	}
+		ft_exit(fra);
 	return (0);
 }
 

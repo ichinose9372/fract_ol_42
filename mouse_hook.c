@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:05:50 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/26 16:53:01 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/29 14:09:16 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	mouse_hook(int button, int x, int y, t_fractol *fra)
 
 int	close_button(t_fractol *fra)
 {
-	mlx_destroy_image(fra->mlx_ptr, fra->img.img);
-	mlx_destroy_window(fra->mlx_ptr, fra->win_ptr);
-	exit(EXIT_SUCCESS);
+	ft_exit(fra);
+	return (0);
 }

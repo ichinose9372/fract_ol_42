@@ -1,4 +1,3 @@
-
 NAME	=	fractol
 
 CC		=	cc
@@ -13,16 +12,24 @@ SRCS	=	main.c\
 			key_hook.c\
 			fractol.c\
 			julia.c\
-			set_fractol.c
+			set_fractol.c\
+			error_exit.c
 
-OBJS	=	$(SRCS:.c=.o)
+HEAD	=	fractol.h
+
+OPTHIN	=	-L/usr/X11R6/lib -lmlx -framework OpenGL -framework AppKit
 
 RM		=	rm -f
 
+OBJS = $(SRCS:.c=.o)
+
+%.o : %.c $(HEAD)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 all : $(NAME)
 
-$(NAME)	: $(SRCS)
-		$(CC) $(CFLAGS) $(SRCS) -L/usr/X11R6/lib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+$(NAME) : $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(OPTHIN) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)

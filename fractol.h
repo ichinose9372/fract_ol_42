@@ -6,7 +6,7 @@
 /*   By: yichinos <yichinos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:18:47 by yichinos          #+#    #+#             */
-/*   Updated: 2023/01/27 12:06:02 by yichinos         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:51:29 by yichinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_fractol {
 	int		loopy;
 	int		maxiter;
 	double	zoom;
+	int		color;
 	double	l_move;
 	double	v_move;
 	int		type;
@@ -74,5 +75,6 @@ void	check_input(int argc, char **argv, t_fractol *fra);
 double	ft_get_num(const char *str, double *decimal);
 double	ft_atof(const char *str);
 int		ft_isspace(char c);
+void	ft_exit(t_fractol *fra);
 
 #endif
