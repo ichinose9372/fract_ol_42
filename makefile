@@ -10,7 +10,7 @@ SRCS	=	main.c\
 			mandelbrot.c\
 			color.c\
 			key_hook.c\
-			fractol.c\
+			draw_fractol.c\
 			julia.c\
 			set_fractol.c\
 			error_exit.c
